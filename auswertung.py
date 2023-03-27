@@ -29,7 +29,7 @@ for a in range(len(columns)):
         continue
     else:
         x,y = df.iloc[:,0], df.iloc[:,i]
-        y = y - np.min(df1.iloc[:,i]) # muss für werte größer 100 cm^-1 gemacht werden
+        y = y - np.min(df1.iloc[:,i]) # muss für werte größer 25 cm^-1 gemacht werden
         y = y/integrate(x,y)
         print(integrate(x,y))
         df.iloc[:,i] = y
