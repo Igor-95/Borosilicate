@@ -6,24 +6,23 @@ import ig_modules_plot as igp
 df = pd.read_excel("bla.xlsx")
 
 #low = [10, 12, 15, 20, 25, 32]
-low = [10, 10, 10, 10, 10, 10]
+low = [15, 10, 10, 10, 10, 10]
 high = [175, 200, 150, 200, 225, 55]
 datasets = [2,3,4,5,6,7,8,9]#,10]
 fit_quality_100, fit_quality_125 = [], []
 colums = df.columns
-data_columns = colums[2:len(colums)-1]
+data_columns = colums[2:len(colums)]
 i = 0
-itervalue = 2
+itervalue = 1
 print(colums)
 print(data_columns)
 
 for dataset in datasets:
     #dataset = 10
     while i < itervalue:
-        df1 = df[df.iloc[:,1] >= low[i]]
-        df1 = df1[df1.iloc[:,1] <= high[i]]
-        x,y,z = df1.iloc[:,1], df1.iloc[:,dataset], []
-        params = BiHill.bihill_fit(x,y)
+        df1 = pd.concat((df.iloc[:,1], df.loc[:,data_columns[dataset-2]]), axis=1)
+        z = []
+        params = BiHill.bihill_fit(df1)
         print(params)
         x = df.iloc[:,1]
         for a in x:
@@ -41,8 +40,9 @@ for dataset in datasets:
     plt.plot(x,y, color="red", linewidth=2, label=f"Data {colums[dataset]}")
     plt.xlabel("cm^-1")
     plt.ylabel("a.u.")
+    #plt.xlim(26.607647800276165,49.702933)
     plt.legend()
     plt.show()
 
-igp.double_barplot(datasets,fit_quality_100,fit_quality_125,
-                   "100","125","Glass Type","R^2","R^2",0.95,1,0.95,1,"comparison 100 vs 125 cm^-1",data_columns)
+#igp.double_barplot(datasets,fit_quality_100,fit_quality_125,
+                   #"100","125","Glass Type","R^2","R^2",0.95,1,0.95,1,"comparison 100 vs 125 cm^-1",data_columns)

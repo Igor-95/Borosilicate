@@ -1,0 +1,11 @@
+parameter	value	description
+boson_peak	0	###(0=BiHill)_(1=Lognormal)
+boson_low	10	###lower_w
+boson_high	100	###higher_w
+COG_peak	0	###(0=polyfit)_(1=min)
+left_low	315	###lower_w
+left_high	375	###higher_w
+right_low	560	###lower_w
+right_high	630	###higher_w
+mu_gaus1	775	###position_1st_gaus
+mu_gaus2	800	###position_2nd_gaus

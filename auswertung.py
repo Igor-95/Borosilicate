@@ -36,6 +36,6 @@ for a in range(len(columns)):
         plt.plot(x,y, label=columns[i])
         i +=1
 
-df.to_excel("bla.xlsx")
+#df.to_excel("bla.xlsx")
 plt.legend()
 plt.show()
